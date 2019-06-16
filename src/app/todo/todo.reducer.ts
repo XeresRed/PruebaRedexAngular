@@ -40,6 +40,17 @@ export function todoreducer(state = estadoInicial, action: TodoAction.Acciones) 
                         return todoEdit;
                     }
                 });
+        case TodoAction.BORRAR_TODO:
+            return state.filter( todoEdit =>  todoEdit.id !== action.id ); 
+        case TodoAction.TOGGLE_TODO_ALL:
+            return state.map( todoEdit => {
+                return {
+                    ...todoEdit,
+                    completado: action.completado
+                }
+            }); 
+        case TodoAction.BORRAR_ALL_TODO:
+            return state.filter( TodoCompletado => !TodoCompletado.completado);
         default:
             return state;
     }

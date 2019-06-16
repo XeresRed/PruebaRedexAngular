@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 //NgRx
 import { StoreModule } from '@ngrx/store';
-import { todoreducer } from './todo/todo.reducer';
+import { appReducers } from './app.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
@@ -19,7 +19,8 @@ import { TodosListComponent } from './todo/todos-list/todos-list.component';
 import { TodosItemComponent } from './todo/todos-item/todos-item.component';
 import { TodosFooterComponent } from './todo/todos-footer/todos-footer.component';
 import { TodosAddComponent } from './todo/todos-add/todos-add.component';
-import { AppState } from './app.reducers';
+import { FilterPipe } from './filter/filter.pipe';
+
 
 
 
@@ -31,13 +32,14 @@ import { AppState } from './app.reducers';
     TodosListComponent,
     TodosItemComponent,
     TodosFooterComponent,
-    TodosAddComponent
+    TodosAddComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    StoreModule.forRoot({todos: todoreducer}),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

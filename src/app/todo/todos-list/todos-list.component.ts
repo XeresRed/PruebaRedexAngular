@@ -11,13 +11,14 @@ import { Item } from '../model/todo.model';
 export class TodosListComponent implements OnInit {
 
   todos: Item[] = [];
+  filtro: string;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.store.select('todos').subscribe( todos => {
-      this.todos = todos;
-      
+    this.store.subscribe( state => {
+      this.todos = state.todos;
+      this.filtro = state.filtro;
     })
   }
 
